@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "bluelight"
+version = "0.1.0"
+description = "a lightweight server managment panel"
+authors = ["dskprt <null@uwu.nya.pub>"]
+license = "MIT"
+
+[tool.poetry.scripts]
+APPLICATION-NAME = 'bluelight.main:main'
+
+[tool.poetry.dependencies]
+python = "^3.6"
+Flask = "^2.0.2"
+psutil = "^5.8.0"
+Flask-JWT-Extended = "^4.3.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
