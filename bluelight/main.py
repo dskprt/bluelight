@@ -69,6 +69,9 @@ process = psutil.Process(os.getpid())
 app = Flask("main")
 
 app.config["JWT_SECRET_KEY"] = config["jwt-secret"]
+app.config["JWT_COOKIE_CSRF_PROTECT"] = False
+app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
+
 jwt = JWTManager(app)
 
 @app.route("/", methods=["GET"])
@@ -108,7 +111,7 @@ def login():
         128
     )
 
-    if username != base64.b64decode(config["users"][0]["username"]) or password != base64.b64decode(config["users"][0]["password"]):
+    if username_hash != base64.b64decode(config["users"][0]["username"]) or password_hash != base64.b64decode(config["users"][0]["password"]):
         return jsonify({"msg": "Bad username or password"}), 401
 
     access_token = create_access_token(identity=username)
@@ -118,7 +121,7 @@ def login():
 @jwt_required()
 def status():
     current_user = get_jwt_identity()
-    return jsonify(logged_in_as=current_user), 200
+    return render_template("status.html")
 
 def main():
     port = 5000

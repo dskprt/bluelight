@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tuicss@2.1.1/dist/tuicss.min.css">
+        <style>
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+body, html {
+    height: 100%;
+    background-color: rgb(32, 32, 32);
+}
+
+.tui-input {
+    width: 100% !important;
+    margin-bottom: 5px;
+}
+        </style>
+    </head>
+    <body>
+        <!--<div class="center" style="position: absolute; margin-top: 100px; margin-bottom: 300px; margin-left: 10%;">
+            <div class="tui-panel white-168 black-255-text">
+                <div class="tui-panel-header">
+                    About
+                </div>
+                <div class="tui-panel-content">
+                    TuiCss v2.0.0 Made with ♥
+                    <br><br>
+                    <div class="center">
+                        <button class="tui-button white-255" style="width: 80px">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="tui-window black-168 left-align" style="position: absolute; margin-left: 50px; margin-top: 75px;">
+            <fieldset class="tui-fieldset">
+                <legend class="">CPU Usage</legend>
+
+                <div class="tui-chart-vertical" style="width: 500px; height: 300px;">
+                    <div class="tui-chart-display">
+                        <div id="cpu60" class="tui-chart-value red-168 animated" style="height: 0%;">0%</div>
+                        <div id="cpu50" class="tui-chart-value green-168" style="height: 0%;">0%</div>
+                        <div id="cpu40" class="tui-chart-value blue-168" style="height: 0%;">0%</div>
+                        <div id="cpu30" class="tui-chart-value yellow-168" style="height: 0%;">0%</div>
+                        <div id="cpu20" class="tui-chart-value purple-168" style="height: 0%;">0%</div>
+                        <div id="cpu10" class="tui-chart-value orange-168" style="height: 0%;">0%</div>
+                        <div id="cpu0" class="tui-chart-value cyan-168" style="height: 0%;">0%</div>
+                    </div>
+                    <div class="tui-chart-y-axis">
+                        <div class="tui-chart-legend">100%</div>
+                        <div class="tui-chart-legend">90%</div>
+                        <div class="tui-chart-legend">80%</div>
+                        <div class="tui-chart-legend">70%</div>
+                        <div class="tui-chart-legend">60%</div>
+                        <div class="tui-chart-legend">50%</div>
+                        <div class="tui-chart-legend">40%</div>
+                        <div class="tui-chart-legend">30%</div>
+                        <div class="tui-chart-legend">20%</div>
+                        <div class="tui-chart-legend">10%</div>
+                    </div>
+                    <div class="tui-chart-x-axis">
+                        <div class="tui-chart-legend">60s</div>
+                        <div class="tui-chart-legend">50s</div>
+                        <div class="tui-chart-legend">40s</div>
+                        <div class="tui-chart-legend">30s</div>
+                        <div class="tui-chart-legend">20s</div>
+                        <div class="tui-chart-legend">10s</div>
+                        <div class="tui-chart-legend">0s</div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <script>
+            document.onload = function() {
+                fetch("/cpu_info").then(res => res.json()).then(json => {
+                    setChart(60,)
+                })
+            }
+            function setChart(num, val) {
+                var el = document.getElementById("cpu" + num)
+                el.style = "height: " + val + "%;"
+                el.innerText = val + "%"
+            }
+        </script>
+    </body>
+</html>
